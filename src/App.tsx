@@ -6,11 +6,6 @@ import styled from 'styled-components';
 import { AddItem, TodoList } from './components';
 import useTodoState from './hooks/useTodoState';
 
-const AppBarComponent = styled(AppBar)`
-display: flex;
-padding: 1em;
-`;
-
 function App() {
     const { todos, addTodo, deleteTodo, resetTodo } = useTodoState([]);
     return (
@@ -30,5 +25,9 @@ function App() {
         </div>
     );
 }
+const AppBarComponent = styled(AppBar)`
+display: flex;
+padding: 1em;
+`;
 
 export default App;

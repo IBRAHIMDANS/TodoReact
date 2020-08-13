@@ -10,12 +10,9 @@ export default function AddItem() {
         <Formik
             initialValues={{ items: '' }}
             onSubmit={(values, actions) => {
-                // console.log({ values, actions });
-                // alert(JSON.stringify(values, null, 2));
-                actions.setSubmitting(false);
-                actions.resetForm({});
-                addTodo(values.items);
-
+                     actions.setSubmitting(false);
+                     actions.resetForm({});
+                     addTodo(values.items);
             }}
             render={() => (
                 <FormComponent>
@@ -23,7 +20,7 @@ export default function AddItem() {
                         name="items"
                         render={({ field, form, meta }) => (
                             <>
-                                <TextField id="outlined-basic" label="Add todo" {...field} variant="outlined"/>
+                                <TextField id="items" data-testid="items" label="Add todo" {...field} variant="outlined" required={true}/>
                                 {meta.touched && meta.error && meta.error}
                             </>
                         )}
