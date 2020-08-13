@@ -1,26 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
+import { AppContext } from './context/AppContext';
 import './App.css';
+import AppBar from '@material-ui/core/AppBar';
+import styled from 'styled-components';
+import { AddItem, TodoList } from './components';
+import useTodoState from './hooks/useTodoState';
+
+const AppBarComponent = styled(AppBar)`
+display: flex;
+padding: 1em;
+`;
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const { todos, addTodo, deleteTodo, resetTodo } = useTodoState([]);
+    return (
+        <div className="App">
+            <AppBarComponent position="static" color={'primary'}>
+                Todo App React
+            </AppBarComponent>
+            <AppContext.Provider value={{
+                todos,
+                addTodo,
+                deleteTodo,
+                resetTodo
+            }}>
+                <AddItem/>
+                <TodoList/>
+            </AppContext.Provider>
+        </div>
+    );
 }
 
 export default App;
